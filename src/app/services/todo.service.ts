@@ -16,7 +16,7 @@ export class TodoService {
   endpoint = `/api`
 
   constructor() { }
-  getApiItems = () => { return this.httpClient.get<TodoItem[]>(`${this.endpoint}/api/todo/getItem`,this.httpOption)}
+  getApiItems = () => { return this.httpClient.get<TodoItem[]>(`${this.endpoint}/todo/getItem`,this.httpOption)}
   setItems = ( data : TodoItem[] ) => {
     this.data = data;
     console.log(`setItems:${this.data}`)
