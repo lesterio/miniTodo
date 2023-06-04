@@ -1,8 +1,12 @@
 <button (click)="getItem()">Get Items</button> {{getItemCount()}}
-<button>Update Item</button>
+<button (click)="updateItem(currentItem!)">Update Item</button>
 <button>Delete Item</button>
 
-<table>
+
+<div>
+</div>
+
+<table [border]="1">
   <tr>
     <th>ID</th>
     <th>Description</th>
@@ -10,11 +14,13 @@
     <th>Create Time</th>
     <th>Update Time</th>
   </tr>
-  <tr *ngFor="let item of data">
+  <tr #item (click)="clickItem(item)" *ngFor="let item of data">
     <td> {{item.todoId}} </td>
     <td> {{item.itemDescription}}</td>
     <td> {{item.itemCompleted}}</td>
-    <td> {{item.itemCreatetime}}</td>
-    <td> {{item.itemUpdatedtime}}</td>
+    <td> {{item.itemCreatetime | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
+    <td> {{item.itemUpdatedtime| date : 'yyyy-MM-dd HH:mm:ss'}}</td>
   </tr>
 </table>
+
+Current Item: <pre>{{ currentItem | json }}</pre>

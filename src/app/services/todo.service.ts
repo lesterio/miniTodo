@@ -24,7 +24,8 @@ export class TodoService {
   }
   setItem = (item : TodoItem) =>  { return this.data.filter(i => i.todoId!== item.todoId).push(item);}
   setApiItem = ( item : TodoItem) => {
-    this.httpClient.post<TodoItem[]>(`${this.endpoint}/api/todo/setItem` , item , this.httpOption)
+    console.log(`setApiItem:${item}`)
+    return this.httpClient.post<TodoItem[]>(`${this.endpoint}/todo/Item` , item , this.httpOption)
   }
   getItems = () => { return this.data;}
   removeItem = (item: TodoItem) => { return this.data.filter(i => item.todoId !== item.todoId)};
