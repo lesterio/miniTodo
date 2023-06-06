@@ -17,18 +17,24 @@ export class TodoService {
 
   constructor() { }
   getApiItems = () => { return this.httpClient.get<TodoItem[]>(`${this.endpoint}/todo/getItem`,this.httpOption)}
+  addApiItem = (item:TodoItem) => {
+    return this.httpClient.post<TodoItem[]>(`${this.endpoint}/todo/Item` , item , this.httpOption)
+  }
+  setApiItem = ( item : TodoItem) => {
+    return this.httpClient.put<TodoItem[]>(`${this.endpoint}/todo/Item/` , item , this.httpOption)}
+  removeApiItem = (id : number) => {
+    return this.httpClient.delete(`${this.endpoint}/todo/Item/${id}` ,this.httpOption)
+  }
   setItems = ( data : TodoItem[] ) => {
     this.data = data;
     console.log(`setItems:${this.data}`)
     return this.data;
   }
   setItem = (item : TodoItem) =>  { return this.data.filter(i => i.todoId!== item.todoId).push(item);}
-  setApiItem = ( item : TodoItem) => {
-    console.log(`setApiItem:${item}`)
-    return this.httpClient.post<TodoItem[]>(`${this.endpoint}/todo/Item` , item , this.httpOption)
-  }
+
   getItems = () => { return this.data;}
-  removeItem = (item: TodoItem) => { return this.data.filter(i => item.todoId !== item.todoId)};
+  removeItem = (id : number) => { return this.data.filter(i => i.todoId !== id)};
+
   existItem = (item: TodoItem) => { return this.data.filter(i => item.todoId === i.todoId).length > 0};
   addItem = (item: TodoItem) => { return this.data.push(item); };
   getItemCount = () => {return this.data.length;}

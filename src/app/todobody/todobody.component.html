@@ -1,11 +1,6 @@
 <button (click)="getItem()">Get Items</button> {{getItemCount()}}
 <button (click)="updateItem(currentItem!)">Update Item</button>
-<button>Delete Item</button>
-
-
-<div>
-</div>
-
+<button (click)="deleteItem(currentItem!)">Delete Item</button>
 <table [border]="1">
   <tr>
     <th>ID</th>
@@ -22,5 +17,4 @@
     <td> {{item.itemUpdatedtime| date : 'yyyy-MM-dd HH:mm:ss'}}</td>
   </tr>
 </table>
-
 Current Item: <pre>{{ currentItem | json }}</pre>

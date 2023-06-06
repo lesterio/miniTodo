@@ -1,1 +1,2 @@
-<app-todobody></app-todobody>
+<app-tododetail [Item]="selectedItem"></app-tododetail>
+<app-todobody (outputItemEvent)="getSelectedItem($event)"></app-todobody>

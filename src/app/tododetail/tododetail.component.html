@@ -1,0 +1,32 @@
+<div style="color:lightgray">
+  <button [disabled]="canCreate()" (click)="CreateItem()">Create Item</button>
+  <button [disabled]="canModify()" (click)="ModifyItem()">Modify Item</button>
+  <button (click)="clearItem()">Clear</button>
+  <button [disabled]="canModify()" (click)="DeleteItem()">Delete</button>
+</div>
+<div>
+  <table>
+    <tr>
+      <td><label for="id">id:</label></td>
+      <td><input type="text" id="id" [value]="ID"></td>
+    </tr>
+    <tr>
+      <td><label for="description">description:</label></td>
+      <td><input type="text" id="description" [value]="Description" (change)="setDescription(description.value)" #description></td>desc:{{Description}}
+    </tr>
+    <tr>
+      <td><label for="state">state:</label></td>
+      <td>
+        <select id="state" [value]="State" (change)="setState(state.value)" #state>
+          <option value="0">Create</option>
+          <option value="1">Processing</option>
+          <option value="9">Complete</option>
+        </select></td>state:{{State}}
+    </tr>
+  </table>
+
+  <fieldset>
+    <legend>displayItem</legend>
+    <pre style="color:blue">{{ displayItem | json}}</pre>
+  </fieldset>
+</div>
