@@ -1,6 +1,19 @@
-<button (click)="getItem()">Get Items</button> {{getItemCount()}}
+<button (click)="getItem(filterState)">Get Items</button>
 <button (click)="updateItem(currentItem!)">Update Item</button>
 <button (click)="deleteItem(currentItem!)">Delete Item</button>
+<fieldset>
+  <legend>Item Type</legend>
+    <select id="state" [(ngModel)]="filterState" (change)="getItem(filterState)">
+      <option value="">All</option>
+      <option value="0">Create</option>
+      <option value="1">Processing</option>
+      <option value="9">Complete</option>
+    </select><br>
+    查詢總數量：{{getItemCount()}}<br>
+    新建立數量：{{getItemCount_Create()}}<br>
+    進行中數量：{{getItemCount_Processing()}}<br>
+    已完成數量：{{getItemCount_Completed()}}<br>
+</fieldset>
 <table [border]="1">
   <tr>
     <th>ID</th>
@@ -9,7 +22,7 @@
     <th>Create Time</th>
     <th>Update Time</th>
   </tr>
-  <tr #item (click)="clickItem(item)" *ngFor="let item of data">
+  <tr #item (click)="clickItem(item)" *ngFor="let item of filterData">
     <td> {{item.todoId}} </td>
     <td> {{item.itemDescription}}</td>
     <td> {{item.itemCompleted}}</td>

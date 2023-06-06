@@ -1,20 +1,25 @@
+import { TodoItem } from './../dto/todo-item';
 import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { CommonModule, JsonPipe } from '@angular/common';
-import { TodoItem } from '../dto/todo-item';
 import { TodoService } from '../services/todo.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-todobody',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './todobody.component.html',
   styleUrls: ['./todobody.component.css']
 })
 export class TodobodyComponent {
-  data : TodoItem[] = [];
+  filterState = '';
   todoService = inject(TodoService);
+  data : TodoItem[] = [];
+  filterData :  TodoItem[] =[];
   currentItem ? : TodoItem | undefined;
+
   @Output() outputItemEvent = new EventEmitter<TodoItem>();
+
   constructor() {
   }
 
@@ -25,13 +30,24 @@ export class TodobodyComponent {
     this.outputItemEvent.emit(item);
   }
 
-  getItem = () => {
+  setItems = ( items :  TodoItem[]) => {
+    this.data = this.todoService.setItems(items);
+  }
+  filterItem = (state : string , items : TodoItem[] ) => {
+    if(state === '') {
+      this.filterData = this.data
+    }
+    else{
+      this.filterData = this.data.filter(item => item.itemCompleted === state);
+    }
+  }
+
+  getItem = (state : string) => {
     this.todoService.getApiItems().subscribe(data =>
       {
-        this.data = data;
+        this.setItems(data)
+        this.filterItem(state, this.data)
       });
-      this.todoService.setItems(this.data)
-      this.data = this.todoService.getItems();
   }
 
   updateItem = (item : TodoItem) => {
@@ -47,6 +63,9 @@ export class TodobodyComponent {
     console.log('updateIte end')
   }
   getItemCount = () => this.data.length;
+  getItemCount_Create = () => this.data.filter(item => item.itemCompleted === '0').length;
+  getItemCount_Processing = () => this.data.filter(item => item.itemCompleted === '1').length
+  getItemCount_Completed = () => this.data.filter(item => item.itemCompleted === '9').length
 
   deleteItem = (item : TodoItem) => {
     console.log(item.todoId)
