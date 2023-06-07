@@ -1,6 +1,4 @@
 <button (click)="getItem(filterState)">Get Items</button>
-<button (click)="updateItem(currentItem!)">Update Item</button>
-<button (click)="deleteItem(currentItem!)">Delete Item</button>
 <fieldset>
   <legend>Item Type</legend>
     <select id="state" [(ngModel)]="filterState" (change)="getItem(filterState)">
