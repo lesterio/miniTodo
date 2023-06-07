@@ -22,6 +22,8 @@ export class TodobodyComponent {
   @Output() outputItemEvent = new EventEmitter<TodoItem>();
 
   constructor() {
+    this.getItem('')
+
   }
 
   clickItem = (item: TodoItem) => {
