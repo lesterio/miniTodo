@@ -2,11 +2,12 @@ import { TodoService } from './../services/todo.service';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodoItem } from '../dto/todo-item';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-tododetail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './tododetail.component.html',
   styleUrls: ['./tododetail.component.css']
 })

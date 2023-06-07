@@ -1,3 +1,7 @@
+執行畫面：
+<img src="screenshot1.png">
+
+
 # MiniTodo
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.1.
