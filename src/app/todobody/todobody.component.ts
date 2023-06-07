@@ -3,11 +3,12 @@ import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { CommonModule, JsonPipe } from '@angular/common';
 import { TodoService } from '../services/todo.service';
 import { FormsModule } from '@angular/forms';
+import { TodoStatePipe } from '../todostate.pipe';
 
 @Component({
   selector: 'app-todobody',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,TodoStatePipe],
   templateUrl: './todobody.component.html',
   styleUrls: ['./todobody.component.css']
 })

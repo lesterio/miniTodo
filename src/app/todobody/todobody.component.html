@@ -25,7 +25,7 @@
   <tr #item (click)="clickItem(item)" *ngFor="let item of filterData">
     <td> {{item.todoId}} </td>
     <td> {{item.itemDescription}}</td>
-    <td> {{item.itemCompleted}}</td>
+    <td> {{item.itemCompleted | todoState  }}</td>
     <td> {{item.itemCreatetime | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
     <td> {{item.itemUpdatedtime| date : 'yyyy-MM-dd HH:mm:ss'}}</td>
   </tr>
